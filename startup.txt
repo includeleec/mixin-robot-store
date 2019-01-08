@@ -1,2 +1,1 @@
-flask run -p 80
-python app.py
+gunicorn --bind=0.0.0.0 --timeout 600 application:app
