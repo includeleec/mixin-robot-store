@@ -3,11 +3,16 @@ asn1crypto==0.24.0
 certifi==2018.11.29
 cffi==1.11.5
 chardet==3.0.4
+Click==7.0
 cryptography==2.4.2
+Flask==1.0.2
 idna==2.8
 iso8601==0.1.12
+itsdangerous==1.1.0
+Jinja2==2.10
 leancloud==2.1.8
 leancloud-better-storage==0.1.7
+MarkupSafe==1.1.0
 Naked==0.1.31
 pycparser==2.19
 pycryptodome==3.7.2
