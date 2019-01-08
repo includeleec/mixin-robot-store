@@ -21,7 +21,7 @@ class MixinSession(Model):
 
     @staticmethod
     def find(**kwargs):
-        session = MixinSession.query().filter_by(**kwargs).first()
+        session = MixinSession.query().order_by(MixinSession.created_at.desc).filter_by(**kwargs).first()
         return session
 
     @staticmethod
