@@ -1,1 +1,2 @@
+flask run -p 80
 python app.py
