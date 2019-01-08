@@ -19,4 +19,5 @@ you can reply [..] these below:
 ## Screenshot
 <img src="https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/01.jpg" width="350" >
 <img src="https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/02.jpg" width="350" >
+<img src="https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/03.jpg" width="350" >
 
