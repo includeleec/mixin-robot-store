@@ -9,4 +9,4 @@ def hello():
 
     ws = wsThread()
     ws.start()
-    return "Hello World!"
+    return "Mixin Robot Store"

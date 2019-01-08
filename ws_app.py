@@ -23,8 +23,16 @@ class wsThread (threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        mixin_ws = MIXIN_WS_API(on_message=on_message)
-        mixin_ws.run()
+
+        try:
+
+            mixin_ws = MIXIN_WS_API(on_message=on_message)
+            mixin_ws.run()
+
+        except Exception as err:
+            print(err)
+        finally:
+            print("Goodbye!")
 
 
 def on_message(ws, message):
