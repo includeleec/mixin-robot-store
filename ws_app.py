@@ -15,10 +15,21 @@ from io import BytesIO
 import base64
 import gzip
 
-try:
-    import thread
-except ImportError:
-    import _thread as thread
+# try:
+#     import thread
+# except ImportError:
+#     import _thread as thread
+
+import threading
+
+class wsThread (threading.Thread):
+
+    def __init__(self):
+        threading.Thread.__init__(self)
+    def run(self):
+        mixin_ws = MIXIN_WS_API(on_message=on_message)
+        mixin_ws.run()
+
 
 def on_message(ws, message):
 
