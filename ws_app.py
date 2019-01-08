@@ -3,8 +3,6 @@ Mixin Robot Store
 code by Lee.c
 """
 from lib.mixin_ws_api import MIXIN_WS_API
-from lib.mixin_api import MIXIN_API
-import config.mixin
 
 from model.robots import Robots
 from model.mixin_session import MixinSession
@@ -15,10 +13,7 @@ from io import BytesIO
 import base64
 import gzip
 
-# try:
-#     import thread
-# except ImportError:
-#     import _thread as thread
+
 
 import threading
 
@@ -26,6 +21,7 @@ class wsThread (threading.Thread):
 
     def __init__(self):
         threading.Thread.__init__(self)
+
     def run(self):
         mixin_ws = MIXIN_WS_API(on_message=on_message)
         mixin_ws.run()
@@ -238,9 +234,9 @@ you can reply [..] these below:
 
 
 
-if __name__ == "__main__":
-
-    # mixin_api = MIXIN_API(config.mixin)
-    mixin_ws = MIXIN_WS_API(on_message=on_message)
-    mixin_ws.run()
+# if __name__ == "__main__":
+#
+#     # mixin_api = MIXIN_API(config.mixin)
+#     mixin_ws = MIXIN_WS_API(on_message=on_message)
+#     mixin_ws.run()
 
