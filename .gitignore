@@ -1,4 +1,3 @@
 .idea/
 __pycache__/
-config/leancloud.py
 config/mixin.py
