@@ -8,6 +8,7 @@ import config.mixin
 
 from model.robots import Robots
 from model.mixin_session import MixinSession
+from model.rating_map import RatingMap
 
 import json
 from io import BytesIO
@@ -18,7 +19,6 @@ try:
     import thread
 except ImportError:
     import _thread as thread
-
 
 def on_message(ws, message):
 
@@ -76,7 +76,7 @@ you can reply [..] these below:
 [help] if you have other problems..."""
 
             robot_str_tmp = "\n" + "-" * 30
-            robot_str_tmp += '\nName:{name}\nCode:{app_code}\nTags:{tags}\nDescription:{desc}'
+            robot_str_tmp += '\nName:{name}\nScore:{score}\nCode:{app_code}\nTags:{tags}\nDescription:{desc}'
             reply_robot_code = '\nReply {Code} will send you Robot Contact Card'
 
             if MixinSession.isInAction(user_id=userId, action_in='app_code'):
@@ -89,6 +89,48 @@ you can reply [..] these below:
                     reply_str = 'Mixin Robot Code:' + realData + ' is not exist'
                     MIXIN_WS_API.sendUserText(ws, conversationId, userId, reply_str)
                 return
+
+
+            if MixinSession.isInAction(user_id=userId, action_in='rate_find'):
+                print(userId + ' in action: rate_find, keyword:' + realData)
+                r = Robots.find(app_code=realData)
+                if r is not None:
+                    reply_str = 'You want to rating this Mixin Robot, Reply 0~5 integer score\n'
+
+                    rating_num = r.rating_num
+                    if rating_num > 0:
+                        score = round(r.score_avg, 1)
+                    else:
+                        score = 'None'
+
+                    reply_str += robot_str_tmp.format(name=r.name, score=score, app_code=r.app_code,
+                                                      tags=r.tags, desc=r.desc)
+                    MIXIN_WS_API.sendUserText(ws, conversationId, userId, reply_str)
+                    MixinSession.inAction(user_id=userId, action_in='rate_score', app_id=r.app_id)
+
+                else:
+                    reply_str = 'Mixin Robot Code:' + realData + ' is not exist'
+                    MIXIN_WS_API.sendUserText(ws, conversationId, userId, reply_str)
+                return
+
+            if MixinSession.isInAction(user_id=userId, action_in='rate_score'):
+
+                app_id = MixinSession.get_app_id(user_id=userId, action_in='rate_score')
+                if app_id:
+                    print(userId + ' in action: rate_score, keyword:' + realData + ' robot id:'+app_id)
+                else:
+                    print("can't find robot app id")
+                    return
+
+                if realData in ['0', '1', '2', '3', '4', '5']:
+                    RatingMap.rating(user_id=userId, app_id=app_id, score=int(realData))
+                    reply_str = 'score success,thank you'
+                else:
+                    reply_str = 'You Must Reply 0~5 integer score\n'
+
+                MIXIN_WS_API.sendUserText(ws, conversationId, userId, reply_str)
+                return
+
 
 
             if MixinSession.isInAction(user_id=userId, action_in='search'):
@@ -105,7 +147,12 @@ you can reply [..] these below:
                     return
 
                 for r in s_list:
-                    reply_str += robot_str_tmp.format(name=r.get('name'), app_code=r.get('app_code'),
+                    rating_num = round(r.get('rating_num'), 1)
+                    if rating_num > 0:
+                        score = r.get('score_avg')
+                    else:
+                        score = 'None'
+                    reply_str += robot_str_tmp.format(name=r.get('name'), score=score, app_code=r.get('app_code'),
                                                       tags=r.get('tags'), desc=r.get('desc'))
 
                 print(reply_str)
@@ -125,7 +172,13 @@ you can reply [..] these below:
                 print(reply_str)
 
                 for r in robots_list_func():
-                    reply_str += robot_str_tmp.format(name=r.name, app_code=r.app_code, tags=r.tags, desc=r.desc)
+                    rating_num = r.rating_num
+                    if rating_num > 0:
+                        score = round(r.score_avg, 1)
+                    else:
+                        score = 'None'
+
+                    reply_str += robot_str_tmp.format(name=r.name, score=score, app_code=r.app_code, tags=r.tags, desc=r.desc)
 
                 print(reply_str)
 
@@ -147,9 +200,9 @@ you can reply [..] these below:
                 return
 
             if 'rate' == realData.lower():
-                reply_str = "Rating mixin robot(developING...)"
-
+                reply_str = "Rating mixin robot, Reply the mixin robot code which you want to rating"
                 MIXIN_WS_API.sendUserText(ws, conversationId, userId, reply_str)
+                MixinSession.inAction(user_id=userId, action_in='rate_find')
                 return
 
             if 'submit' == realData.lower():

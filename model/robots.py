@@ -48,7 +48,7 @@ class Robots(Model):
 
     @staticmethod
     def new():
-        return Robots.query().order_by(Robots.publish.desc).find(limit=10)
+        return Robots.query().order_by(Robots.created_at.desc).find(limit=10)
 
     @staticmethod
     def top():
