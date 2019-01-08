@@ -17,5 +17,6 @@ you can reply [..] these below:
 - help: if you have other problems...
 
 ## Screenshot
-![](https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/01.jpg | width=200)
-![](https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/02.jpg | width=200)
+<img src="https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/01.jpg" width="350" >
+<img src="https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/02.jpg" width="350" >
+
