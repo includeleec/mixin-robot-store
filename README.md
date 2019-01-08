@@ -15,3 +15,7 @@ you can reply [..] these below:
 - rate: rating mixin robot
 - submit: [submit a new mixin robot](http://m3blockchain.mikecrm.com/A95F8m4)
 - help: if you have other problems...
+
+## Screenshot
+![01.jpg](https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/01.jpg)
+![02.jpg](https://raw.githubusercontent.com/includeleec/mixin-robot-store/master/screenshot/02.jpg)
