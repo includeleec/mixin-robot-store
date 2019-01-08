@@ -1,7 +1,7 @@
 # Mixin Robot Store
 
 ## Introduction
-- Collect all awesome Mixin Robots in our Store
+- Collect all awesome Mixin Robots in our Store (Mixin ID:7000101718)
 - base on [Mixin Python3 SDK](https://github.com/includeleec/mixin-python3-sdk)
 - Storage power by [leancloud](https://leancloud.cn/), use [leancloud-better-storage-python](https://github.com/nnnewb/leancloud-better-storage-python)
 
