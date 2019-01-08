@@ -3,6 +3,7 @@
 ## Introduction
 - Mixin Robot Store
 - base on [Mixin Python3 SDK](https://github.com/includeleec/mixin-python3-sdk)
+- Storage power by [leancloud](https://leancloud.cn/), use [leancloud-better-storage-python](https://github.com/nnnewb/leancloud-better-storage-python)
 
 ## Commands of Robot
 you can reply [..] these below:
