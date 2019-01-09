@@ -242,9 +242,8 @@ you can reply [..] these below:
 
 
 
-# if __name__ == "__main__":
-#
-#     # mixin_api = MIXIN_API(config.mixin)
-#     mixin_ws = MIXIN_WS_API(on_message=on_message)
-#     mixin_ws.run()
+if __name__ == "__main__":
+
+    mixin_ws = MIXIN_WS_API(on_message=on_message)
+    mixin_ws.run()
 
