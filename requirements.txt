@@ -18,7 +18,7 @@ pycparser==2.19
 pycryptodome==3.7.2
 PyJWT==1.7.1
 python-dateutil==2.7.5
-PyYAML==3.13
+PyYAML==5.4
 qiniu==7.1.4
 requests==2.21.0
 shellescape==3.4.1
